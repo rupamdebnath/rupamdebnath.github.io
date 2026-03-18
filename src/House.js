@@ -12,6 +12,7 @@ export default class House {
         this.position = options.position || new THREE.Vector3(0, 0, 0);
         this.camera = options.camera || null;
         this.renderer = options.renderer || null;
+        this.audioHandler = options.audioHandler || null;
 
         this.infoButton = null;
         this.infoText = null;
@@ -89,6 +90,10 @@ export default class House {
             buttonWorldPosition,
             worldRotationDeg
         );
+
+        if (this.audioHandler) {
+            this.infoButton.setAudioHandler(this.audioHandler);
+        }
 
         this.infoText = new TextHandler(
             this.scene,

@@ -17,9 +17,11 @@ export default class ButtonHandler {
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
 
+        this.audioHandler = null;
+        this.clickCallback = () => {};
+
         this.init();
         this.setupEvents();
-        this.clickCallback = () => {};
     }
 
     init() {
@@ -69,6 +71,9 @@ export default class ButtonHandler {
         this.text.set({ content });
     }
 
+    setAudioHandler(audioHandler) {
+        this.audioHandler = audioHandler;
+    }
 
     getMouse(event) {
         this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -85,6 +90,11 @@ export default class ButtonHandler {
             this.button.set({
                 backgroundColor: new THREE.Color(0xff0000)
             });
+            
+            // Play door sound if audio handler is available
+            if (this.audioHandler) {
+                this.audioHandler.playDoorSound();
+            }
             
             this.clickCallback();
         }

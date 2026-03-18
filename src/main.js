@@ -7,6 +7,7 @@ import PlayerController from './PlayerController.js';
 import House from './House.js';
 import ThreeMeshUI from 'three-mesh-ui';
 import TextHandler from './TextHandler.js';
+import AudioHandler from './AudioHandler.js';
 
 const scene = new THREE.Scene();
 //const gui = new GUI();
@@ -29,6 +30,7 @@ const controlsHelper = document.createElement('div');
 controlsHelper.className = 'controls-helper';
 controlsHelper.innerHTML = `
     <h3>Controls</h3>
+    <p>Best run on a PC. No Controls for Phone yet.</p>
     <p>Use W, A, S, D to control the fox.</p>
     <p>Hold Shift to sprint.</p>
     <p>Click the blue buttons with the mouse to interact.</p>
@@ -151,6 +153,11 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 renderer.setSize( sizes.width, sizes.height );
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
+//Audio Handler
+const audioHandler = new AudioHandler(scene, camera, './audio/nightsound');
+audioHandler.loadBackgroundMusic('./audio/nightsound');
+audioHandler.loadDoorSound('./audio/door');
+
 //Resizing
 window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
@@ -173,27 +180,32 @@ const houses = [
     new House(scene, {
         textureLoader,
         position: new THREE.Vector3(0, 0, 0),
-        rotation: rotDeg(0, 0, 0)
+        rotation: rotDeg(0, 0, 0),
+        audioHandler
     }),
     new House(scene, {
         textureLoader,
         position: new THREE.Vector3(20, 0, 10),
-        rotation: rotDeg(0, -60, 0)
+        rotation: rotDeg(0, -60, 0),
+        audioHandler
     }),
     new House(scene, {
         textureLoader,
         position: new THREE.Vector3(-20, 0, 10),
-        rotation: rotDeg(0, 60, 0)
+        rotation: rotDeg(0, 60, 0),
+        audioHandler
     }),
         new House(scene, {
         textureLoader,
         position: new THREE.Vector3(20, 0, -10),
-        rotation: rotDeg(0, -45, 0)
+        rotation: rotDeg(0, -45, 0),
+        audioHandler
     }),
     new House(scene, {
         textureLoader,
         position: new THREE.Vector3(-20, 0, -10),
-        rotation: rotDeg(0, 45, 0)
+        rotation: rotDeg(0, 45, 0),
+        audioHandler
     })
 ];
 
@@ -225,8 +237,9 @@ houses[2].setTextContent(`- Bachelor's degree in Mechanical Engineering from Ann
     - Currently pursuing the core curriculum of Computer Science at 42Berlin, Berlin, Germany`);
 
 houses[3].setButtonText("Skills");
-houses[3].setTextContent(`- Proficient in C, C#, C++, and JavaScript
-- Experience with Unity for game development
+houses[3].setTextContent(`- Proficient in C, C#
+- Intermediate knowledge of C++, JavaScript, Python
+- Experience with Unity Engine for game development
 - Familiarity with 3D modeling and animation.
 - Git version control, including PlasticSCM for Unity`);
 
@@ -270,6 +283,7 @@ function disposeScene() {
     }
 
     controls.dispose();
+    audioHandler.dispose();
     renderer.dispose();
 }
 
