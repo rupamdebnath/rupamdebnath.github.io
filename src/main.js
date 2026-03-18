@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import GUI from 'lil-gui';
+//import GUI from 'lil-gui';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Sky } from 'three/examples/jsm/Addons.js';
 import ButtonHandler from './ButtonHandler.js';
@@ -9,7 +9,7 @@ import ThreeMeshUI from 'three-mesh-ui';
 import TextHandler from './TextHandler.js';
 
 const scene = new THREE.Scene();
-const gui = new GUI();
+//const gui = new GUI();
 
 //Sky
 const sky = new Sky();
