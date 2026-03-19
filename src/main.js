@@ -335,7 +335,7 @@ const videoHandler9 = new VideoHandler(scene, camera, { renderer: css3dRenderer 
 videoHandler9.addYouTubeScreen({
     videoId: 'hL3WFsaw8Hg',
     position: new THREE.Vector3(10, 1, 15),
-    rotation: { x: 0, y: -15, z: 0 },
+    rotation: { x: 0, y: -75, z: 0 },
     width: 1280,
     height: 720,
     worldScale: 0.0025,
@@ -350,7 +350,7 @@ const videoHandler10 = new VideoHandler(scene, camera, { renderer: css3dRenderer
 videoHandler10.addYouTubeScreen({
     videoId: '38lvDAo2Gkc',
     position: new THREE.Vector3(-10, 1, 15),
-    rotation: { x: 0, y: 15, z: 0 },
+    rotation: { x: 0, y: 75, z: 0 },
     width: 1280,
     height: 720,
     worldScale: 0.0025,
@@ -423,10 +423,11 @@ houses[0].setTextContent(`Hello! My name is Rupam Debnath.
     Welcome to my World!
     
 
-    I'm a 3D enthusiast with experience in Game Programming using Unity, C# and C++. 
+    I'm a gamer with experience in Game Programming using Unity Engine and C#. 
     I was born and raised in India, currently living in Essen, Germany.
-    I have been playing games since Super Mario on the NES in the 90s, continuing till date with consoles, PC and Oculus Quest VR.
-    I have a strong passion for creating immersive 3D experiences and am currently exploring the capabilities of Three.js to bring my ideas to life.
+    I have been playing games since Super Mario on the NES in the 90s.
+    Currently I play on the PC and Meta Quest VR. My favourite genres are open world, multiplayer and VR games.
+    I have a strong passion for creating immersive 3D experiences and games.
     Check out the other houses for more details and background about me.`);
 
 houses[1].setButtonText("Work Experience");
@@ -434,7 +435,7 @@ houses[1].setTextContent(`- Lead Unity Developer at RealityArc Systems, Bangalor
     - Unity XR Developer at CUSMAT Technologies, Bangalore, India (Dec 2022 - Jun 2024)
     - IT Support Engineer at Xtreme Productivity, Melbourne, Australia (Mar 2019 - Aug 2021)
     - Software Test Engineer at Infosys, Bangalore, India (Feb 2015 - Dec 2016)
-    - Software Test Engineer at Laresen and Toubro Infotech, Pune, India (Jul 2012 - Dec 2014)`);
+    - Software Test Engineer at Larsen and Toubro Infotech, Pune, India (Jul 2012 - Dec 2014)`);
 
 houses[2].setButtonText("Education");
 houses[2].setTextContent(`- Bachelor's degree in Mechanical Engineering from Anna University, India
@@ -444,9 +445,17 @@ houses[2].setTextContent(`- Bachelor's degree in Mechanical Engineering from Ann
 houses[3].setButtonText("Skills");
 houses[3].setTextContent(`- Proficient in C, C#
 - Intermediate knowledge of C++, JavaScript, Python
-- Experience with Unity Engine for game development
-- Familiarity with 3D modeling and animation.
-- Git version control, including PlasticSCM for Unity`);
+- Strong with Unity Engine and VR/AR development
+- Learning Three.js for web-based 3D experiences
+- SQL database management and queries
+- Beginner level with Unreal Engine, can pickup quickly
+- Quick learner of new technologies and tools
+- Worked with Microsoft Cloud apps
+- Familiarity with 3D modeling and animation
+- Check out my modelling work at 
+https://artstation.com/rdebnath
+- Git version control, including PlasticSCM
+- Software Product Development and Testing with Selenium`);
 
 houses[4].setButtonText("Contact");
 houses[4].setTextContent(`Email - rdebmail@gmail.com
