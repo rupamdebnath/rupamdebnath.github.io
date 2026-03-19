@@ -492,6 +492,9 @@ function disposeScene() {
     }
 
     controls.dispose();
+    if (player && typeof player.dispose === 'function') {
+        player.dispose();
+    }
     audioHandler.dispose();
     videoHandler.dispose();
     renderer.dispose();
@@ -508,6 +511,10 @@ const player = new PlayerController(scene, camera, './models/Fox.glb', (model) =
     model.scale.setScalar(0.01);
     model.position.set(0, -0.1, 15);
     model.rotation.y = Math.PI; 
+}, {
+    audioHandler,
+    walkSoundPath: './audio/walk.mp3',
+    runSoundPath: './audio/walk.mp3'
 });
 
 const joystickBase = document.getElementById('mobile-joystick');

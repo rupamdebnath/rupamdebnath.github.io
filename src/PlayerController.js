@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export default class PlayerController {
-    constructor(scene, camera, path, onLoaded) {
+    constructor(scene, camera, path, onLoaded, options = {}) {
         this.scene = scene;
         this.camera = camera;
         this.loader = new GLTFLoader();
@@ -19,13 +19,91 @@ export default class PlayerController {
         this.keys = { w: false, a: false, s: false, d: false, shift: false };
         this.analogInput = { x: 0, y: 0 };
         this.analogRun = false;
+
+        // Audio state
+        this.audioHandler = options.audioHandler || null;
+        this.walkSound = null;
+        this.runSound = null;
+        this.currentMovementSound = null;
         
         // Bind events
         window.addEventListener('keydown', (e) => this.keys[e.key.toLowerCase()] = true);
         window.addEventListener('keyup', (e) => this.keys[e.key.toLowerCase()] = false);
 
         this.onLoaded = onLoaded;
+        this.initMovementAudio(options);
         this.load(path);
+    }
+
+    initMovementAudio(options = {}) {
+        if (!this.audioHandler || !this.audioHandler.listener) {
+            return;
+        }
+
+        const walkPath = options.walkSoundPath || './audio/walk.mp3';
+        const runPath = options.runSoundPath || './audio/walk.mp3';
+        const walkVolume = options.walkVolume ?? 0.03;
+        const runVolume = options.runVolume ?? 0.03;
+        const audioLoader = new THREE.AudioLoader();
+
+        audioLoader.load(walkPath, (buffer) => {
+            this.walkSound = new THREE.Audio(this.audioHandler.listener);
+            this.walkSound.setBuffer(buffer);
+            this.walkSound.setLoop(true);
+            this.walkSound.setVolume(walkVolume);
+        });
+
+        audioLoader.load(runPath, (buffer) => {
+            this.runSound = new THREE.Audio(this.audioHandler.listener);
+            this.runSound.setBuffer(buffer);
+            this.runSound.setLoop(true);
+            this.runSound.setVolume(runVolume);
+            this.runSound.setPlaybackRate(0.3);
+        });
+    }
+
+    stopMovementSounds() {
+        if (this.walkSound && this.walkSound.isPlaying) {
+            this.walkSound.stop();
+        }
+
+        if (this.runSound && this.runSound.isPlaying) {
+            this.runSound.stop();
+        }
+
+        this.currentMovementSound = null;
+    }
+
+    updateMovementAudio(isMoving, isRunning) {
+        if (!this.audioHandler || !this.audioHandler.listener) {
+            return;
+        }
+
+        if (this.audioHandler.listener.context.state === 'suspended') {
+            return;
+        }
+
+        if (!isMoving) {
+            this.stopMovementSounds();
+            return;
+        }
+
+        const target = isRunning ? 'run' : 'walk';
+        if (this.currentMovementSound === target) {
+            return;
+        }
+
+        this.stopMovementSounds();
+
+        if (target === 'run' && this.runSound && !this.runSound.isPlaying) {
+            this.runSound.play();
+            this.currentMovementSound = 'run';
+        }
+
+        if (target === 'walk' && this.walkSound && !this.walkSound.isPlaying) {
+            this.walkSound.play();
+            this.currentMovementSound = 'walk';
+        }
     }
 
     setAnalogInput(x, y) {
@@ -68,7 +146,7 @@ export default class PlayerController {
         if (!this.model) return;
 
         const isRunRequested = (this.keys.shift || this.analogRun) && !!this.runAction;
-        const moveSpeed = (isRunRequested ? 5 : 2) * deltaTime;
+        const moveSpeed = (isRunRequested ? 4 : 2) * deltaTime;
         const rotateSpeed = 3 * deltaTime;
         let isMoving = false;
 
@@ -119,6 +197,7 @@ export default class PlayerController {
             }
 
             this.mixer.update(deltaTime);
+            this.updateMovementAudio(isMoving, isRunning);
         }
 
         // 3. Camera Follow (Third Person)
@@ -132,5 +211,9 @@ export default class PlayerController {
         // Smoothly follow the player
         this.camera.position.lerp(cameraOffset, 0.1); 
         this.camera.lookAt(this.model.position.x, this.model.position.y + 1.5, this.model.position.z);
+    }
+
+    dispose() {
+        this.stopMovementSounds();
     }
 }
