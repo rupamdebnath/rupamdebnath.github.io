@@ -267,9 +267,9 @@ videoHandler4.addYouTubeScreen({
     worldScale: 0.0025,
     mute: 1
 });
-videoHandler4.addText(renderer, `- Accurate Physics simulation of a crane system
+videoHandler4.addText(renderer, `- Physics simulation of a Crane System in Unity and VR
     - Rigidbodies and Joints Used for realistic movement
-    - Custom hardware using Arduino Inputs
+    - An example of a system I love to build, where precise calculations matter
     - Accuracy to real world physics was a key requirement`);
 
 const videoHandler5 = new VideoHandler(scene, camera, { renderer: css3dRenderer });
@@ -335,7 +335,7 @@ const videoHandler9 = new VideoHandler(scene, camera, { renderer: css3dRenderer 
 videoHandler9.addYouTubeScreen({
     videoId: 'hL3WFsaw8Hg',
     position: new THREE.Vector3(10, 1, 15),
-    rotation: { x: 0, y: -75, z: 0 },
+    rotation: { x: 0, y: -70, z: 0 },
     width: 1280,
     height: 720,
     worldScale: 0.0025,
@@ -348,19 +348,18 @@ videoHandler9.addText(renderer, `- PC simulation of Dynapac Roller
 
 const videoHandler10 = new VideoHandler(scene, camera, { renderer: css3dRenderer });
 videoHandler10.addYouTubeScreen({
-    videoId: '38lvDAo2Gkc',
+    videoId: 'Hg_oFt0ftmE',
     position: new THREE.Vector3(-10, 1, 15),
-    rotation: { x: 0, y: 75, z: 0 },
+    rotation: { x: 0, y: 70, z: 0 },
     width: 1280,
     height: 720,
     worldScale: 0.0025,
     mute: 1
 });
-videoHandler10.addText(renderer, `- My very first 3D game in Unity, hence close to my heart
-    - Although not the best in terms of graphics and gameplay, it was a great learning experience
-    - It was made for Android phones with touch controls, hence the simple mechanics and graphics
-    - State machine, basic Nav AI, Scriptable Objects were key features`);
-
+videoHandler10.addText(renderer, `- A multiplayer game using Unity NetCode for GameObjects (PurrNet)
+    - Client-server architecture with server being the Instructor/Evaluator and client being the trainee
+    - Real-time synchronization of player actions and game state across the network
+    - Weather and day/night systems with dynamic changes in scene, particle systems used for rain and snow effects`);
 
 //Resizing
 window.addEventListener('resize', () => {
@@ -424,8 +423,8 @@ houses[0].setTextContent(`Hello! My name is Rupam Debnath.
     
 
     I'm a gamer with experience in Game Programming using Unity Engine and C#. 
-    I was born and raised in India, currently living in Essen, Germany.
-    I have been playing games since Super Mario on the NES in the 90s.
+    Born in India, I currently live in Essen, Germany.
+    I have been playing games since I found Super Mario on the NES in the 90s.
     Currently I play on the PC and Meta Quest VR. My favourite genres are open world, multiplayer and VR games.
     I have a strong passion for creating immersive 3D experiences and games.
     Check out the other houses for more details and background about me.`);
@@ -445,20 +444,24 @@ houses[2].setTextContent(`- Bachelor's degree in Mechanical Engineering from Ann
 houses[3].setButtonText("Skills");
 houses[3].setTextContent(`- Proficient in C, C#
 - Intermediate knowledge of C++, JavaScript, Python
-- Strong with Unity Engine and VR/AR development
-- Learning Three.js for web-based 3D experiences
+- Strong with Unity Engine URP and VR/AR development
+- Unity Multiplayer development (Netcode, Mirror)
+- Three.js for creating web-based 3D experiences
 - SQL database management and queries
-- Beginner level with Unreal Engine, can pickup quickly
+- Familiar with Unreal Engine and Godot Engine
 - Quick learner of new technologies and tools
 - Worked with Microsoft Cloud apps
 - Familiarity with 3D modeling and animation
-- Check out my modelling work at 
+- Check out my work at 
 https://artstation.com/rdebnath
 - Git version control, including PlasticSCM
-- Software Product Development and Testing with Selenium`);
+- Software Product Development 
+- Test automation with Selenium`);
 
 houses[4].setButtonText("Contact");
-houses[4].setTextContent(`Email - rdebmail@gmail.com
+houses[4].setTextContent(`I would love to connect with you and share ideas! Feel free to reach out to me through any of the following channels:
+    
+    Email - rdebmail@gmail.com
 
 
     LinkedIn - https://www.linkedin.com/in/devrupam

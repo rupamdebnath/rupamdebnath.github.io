@@ -42,8 +42,8 @@ export default class PlayerController {
 
         const walkPath = options.walkSoundPath || './audio/walk.mp3';
         const runPath = options.runSoundPath || './audio/walk.mp3';
-        const walkVolume = options.walkVolume ?? 0.03;
-        const runVolume = options.runVolume ?? 0.03;
+        const walkVolume = options.walkVolume ?? 0.01;
+        const runVolume = options.runVolume ?? 0.06;
         const audioLoader = new THREE.AudioLoader();
 
         audioLoader.load(walkPath, (buffer) => {
