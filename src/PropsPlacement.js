@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import GUI from 'lil-gui';
+//import GUI from 'lil-gui';
 import ModelHandler from './ModelHandler.js';
 
 export default class PropsPlacement {
@@ -9,7 +9,7 @@ export default class PropsPlacement {
     }
 
     loadProps() {
-        const gui = new GUI();
+        //const gui = new GUI();
         //Props
         const fence1 = new ModelHandler(this.scene, './models/props/Fence1.glb', (model) => {
             model.position.set(2, -2.2, 2.5);
@@ -49,9 +49,10 @@ export default class PropsPlacement {
         const tree5 = new ModelHandler(this.scene, './models/props/Pinetree3.glb', (model) => {
             model.position.set(25, 9, -16);
             model.scale.setScalar(0.1);
+            /*
             gui.add(model.position, 'x', -100, 100, 0.1).name('Fence X');
             gui.add(model.position, 'y', -100, 100, 0.1).name('Fence Y');
-            gui.add(model.position, 'z', -100, 100, 0.1).name('Fence Z');
+            gui.add(model.position, 'z', -100, 100, 0.1).name('Fence Z');*/
         });
 
         const tree6 = new ModelHandler(this.scene, './models/props/Pinetree4.glb', (model) => {
